@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+@theme {
+  /* --- Brand & Semantic Colors --- */
+  --color-primary: #FF5F00; 
+  --color-primary-hover: #E65600; 
+  --color-primary-light: #FFF5F0; 
+  --color-primary-dark: #CC4C00; 
+  --color-primary-soft: #FFECE0; 
+  --color-primary-soft-border: #FFD9C2; 
+  --color-primary-muted: #FF8533; 
+
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #FBFCFD; 
+  --color-surface-muted: #F1F5F9; 
+
+  --color-muted: #64748B;
+  --color-muted-light: #94A3B8;
+  --color-muted-dark: #1E293B;
+
+  --color-border: #E2E8F0;
+  --color-border-hover: #CBD5E1;
+  --color-border-dark: #94A3B8;
+
+  --color-success: #10B981;
+  --color-success-soft: #ECFDF5;
+  --color-success-soft-border: #D1FAE5;
+
+  --color-warning: #F59E0B;
+  --color-warning-soft: #FFFBEB;
+  --color-warning-soft-border: #FEF3C7;
+
+  --color-danger: #EF4444;
+  --color-danger-soft: #FEF2F2;
+  --color-danger-soft-border: #FEE2E2;
+
+  /* --- Typography --- */
+  --font-sans: "Zain", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", sans-serif;
+  
+  --text-3xs: 0.5625rem; /* 9px */
+  --text-2xs: 0.625rem;  /* 10px */
+  --text-base-alt: 0.6875rem; /* 11px */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+
+  /* --- Spacing --- */
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+
+  /* --- Radius --- */
+  --radius-lg: 0.5rem;   /* 8px - Small elements/Buttons */
+  --radius-xl: 0.75rem;  /* 12px - Inputs/Small containers */
+  --radius-2xl: 1rem;    /* 16px - Standard sections/Cards */
+  --radius-3xl: 1.5rem;  /* 24px - Large banners/Bento */
+  --radius-full: 9999px;
+
+  /* --- Motion --- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    @apply font-sans antialiased text-muted-dark bg-surface selection:bg-primary-light selection:text-primary-dark overflow-x-hidden;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    text-size-adjust: 100%;
+  }
+
+  /* Absolute shadow removal as per user request to enforce Flat Design globally */
+  *, *::before, *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    --tw-shadow: 0 0 #0000 !important;
+    --tw-shadow-colored: 0 0 #0000 !important;
+    --tw-ring-offset-shadow: 0 0 transparent !important;
+    --tw-ring-shadow: 0 0 transparent !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-normal font-bold text-muted-dark;
+  }
+
+  input, textarea, select {
+    @apply bg-surface-alt border border-border rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-primary transition-all;
+  }
+
+  button {
+    @apply transition-all active:scale-95 cursor-pointer;
+  }
+}
+
+@layer components {
+  /* Design Pattern: Label Caps */
+  .label-caps {
+    @apply text-xs font-bold text-muted uppercase tracking-normal;
+  }
+
+  /* Design Pattern: Vertical Accent Line */
+  .accent-line {
+    @apply w-1.5 h-6 bg-primary rounded-full;
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 0.375rem;
+    height: 0.375rem;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full hover:bg-border-dark transition-colors;
+  }
+}
+
+/* RTL Helpers */
+[dir="rtl"] .accent-line {
+  @apply ml-0 mr-0; /* Handled by margins where used */
+}
+  
+  /* Global inputs - prevent iOS zoom by using 16px font-size minimum on mobile */
+  @media (max-width: 47.9375rem) {
+    input, textarea, select {
+      font-size: 1rem !important;
+    }
+  }
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s infinite;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-content, .print-content * {
+    visibility: visible;
+  }
+  .print-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
