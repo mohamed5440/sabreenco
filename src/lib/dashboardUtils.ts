@@ -1,0 +1,16 @@
+export const serviceTranslations: Record<string, string> = {
+  flight: "طيران",
+  hotel: "فنادق",
+  visa: "تأشيرات",
+  visa_uae: "تأشيرة الإمارات",
+  visa_other: "تأشيرة دول أخرى",
+  insurance: "تأمين سفر",
+  company: "حسابات شركات",
+  umrah: "رحلات عمرة",
+  طيران: "طيران",
+  فندق: "فنادق",
+  فنادق: "فنادق",
+  تاشيرة: "تأشيرات",
+  تأشيرة: "تأشيرات",
+  عمرة: "عمرة",
+};

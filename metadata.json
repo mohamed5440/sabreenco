@@ -1,0 +1,8 @@
+{
+  "name": "SABREENCO | 1.4",
+  "description": "صابرينكو للخدمات السياحية - منصة متكاملة لحجز الرحلات، الفنادق، والتأشيرات بأفضل الأسعار وبأعلى معايير الجودة والأمان.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
